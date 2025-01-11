@@ -3,45 +3,44 @@ import './App.css';
 import axios from 'axios';
 
 function App() {
-  const [records, setRecords] = useState([])
+  const [records, setRecords] = useState([]);
 
   const addrecord = async () => {
-
     try {
-      // const random = Math.floor(Math.random() * 10) + 1
-      const response = await axios.get(` https://jsonplaceholder.typicode.com/users`)
-      const newRecord = response.data
+      const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+      const newRecord = response.data.map(user => ({
+        name: user.name,
+        email: user.email
+      }));
 
-      setRecords((prevRecords) => [...prevRecords, newRecord])
+      setRecords((prevRecords) => [...prevRecords, ...newRecord]);
     } catch (error) {
-      console.log("error data fetching", error);
-
-
+      console.log("Error fetching data:", error);
     }
-  }
-  const deleteReccords = (index) => {
+  };
 
-    setRecords((prevRecords) => prevRecords.filter((_, i) => i !== index))
-  }
+  const deleteReccords = (index) => {
+    setRecords((prevRecords) => prevRecords.filter((_, i) => i !== index));
+  };
 
   return (
     <>
+      <div className="App">
+        <button className="addButton" onClick={addrecord}>Add Records</button>
 
-      <div className='App'>
-        <button className='addButton' onClick={() => addrecord}>add Records</button>
-
-        <table className='recordsTable'>
+        <table className="recordsTable">
           <thead>
-            <tr >
+            <tr>
               <th>Name</th>
+              <th>Email</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {records.map((records, index) => (
+            {records.map((record, index) => (
               <tr key={index}>
-                <td>{records.name}</td>
-
+                <td>{record.name}</td>
+                <td>{record.email}</td>
                 <td>
                   <button onClick={() => deleteReccords(index)}>Delete</button>
                 </td>
@@ -50,8 +49,6 @@ function App() {
           </tbody>
         </table>
       </div>
-
-
     </>
   );
 }
