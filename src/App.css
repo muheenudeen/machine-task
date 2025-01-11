@@ -1,14 +1,61 @@
-.App{
-  font-family: Arial, Helvetica, sans-serif;
+
+.App {
+  font-family: Arial, sans-serif;
   margin: 20px;
+  padding: 20px;
   text-align: center;
 }
 
-
-.addButton{
-  background-color: gray;
-  color: wheat;
-  border: none;
+.addButton {
+  background-color: greenyellow; 
+  color: white;
   padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
 
+.addButton:hover {
+  background-color: greenyellow;
+}
+
+.recordsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.recordsTable th,
+.recordsTable td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid white;
+}
+
+.recordsTable th {
+  background-color: white;
+  font-weight: bold;
+}
+
+.recordsTable button {
+  background-color: red; 
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.recordsTable button:hover {
+  background-color: red;
+}
+
+.recordsTable tr:nth-child(even) {
+  background-color: gray;
+}
+
+.recordsTable tr:hover {
+  background-color: wheat;
 }
